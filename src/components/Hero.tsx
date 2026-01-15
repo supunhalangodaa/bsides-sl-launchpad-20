@@ -111,8 +111,10 @@ const Hero = () => {
         }} transition={{
           delay: 1
         }} className="flex flex-wrap items-center justify-center gap-4">
-            <Button variant="hero" size="xl">
-              Register Now
+            <Button variant="hero" size="xl" asChild>
+              <a href="https://form.jotform.com/260142521593047" target="_blank" rel="noopener noreferrer">
+                Register Now
+              </a>
             </Button>
             <Button variant="terminal" size="xl">
               Learn More
