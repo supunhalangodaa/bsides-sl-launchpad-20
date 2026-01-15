@@ -10,7 +10,7 @@ const stats = [
   },
   {
     icon: Presentation,
-    value: "20+",
+    value: "10+",
     label: "Speakers",
     description: "Industry experts & researchers",
   },
