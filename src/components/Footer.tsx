@@ -1,11 +1,8 @@
-import { Twitter, Linkedin, Github, Mail } from "lucide-react";
+import { Linkedin } from "lucide-react";
 import bsidesLogo from "@/assets/bsides-logo.png";
 
 const socialLinks = [
-  { icon: Twitter, href: "#", label: "Twitter" },
-  { icon: Linkedin, href: "#", label: "LinkedIn" },
-  { icon: Github, href: "#", label: "GitHub" },
-  { icon: Mail, href: "#", label: "Email" },
+  { icon: Linkedin, href: "https://www.linkedin.com/company/bsidessrilanka", label: "LinkedIn" },
 ];
 
 const Footer = () => {
