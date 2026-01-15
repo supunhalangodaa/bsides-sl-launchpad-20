@@ -1,11 +1,4 @@
 import { motion } from "framer-motion";
-import {
-  Carousel,
-  CarouselContent,
-  CarouselItem,
-  CarouselNext,
-  CarouselPrevious,
-} from "@/components/ui/carousel";
 import { Camera } from "lucide-react";
 
 import event1 from "@/assets/gallery/event-1.jpg";
@@ -17,6 +10,9 @@ import event6 from "@/assets/gallery/event-6.jpg";
 import event7 from "@/assets/gallery/event-7.jpg";
 import event8 from "@/assets/gallery/event-8.jpg";
 import event9 from "@/assets/gallery/event-9.jpg";
+import event10 from "@/assets/gallery/event-10.jpg";
+import event11 from "@/assets/gallery/event-11.jpg";
+import event12 from "@/assets/gallery/event-12.jpg";
 
 const images = [
   { src: event1, alt: "Speaker presenting at BSides Sri Lanka 2025" },
@@ -28,6 +24,9 @@ const images = [
   { src: event7, alt: "Audience at BSides Sri Lanka 2025" },
   { src: event8, alt: "Cybersecurity expert speaking at BSides" },
   { src: event9, alt: "Ethical hacker presentation at BSides" },
+  { src: event10, alt: "Bug hunting workshop at BSides" },
+  { src: event11, alt: "Hacking Village at BSides Sri Lanka" },
+  { src: event12, alt: "Networking at BSides Sri Lanka 2025" },
 ];
 
 const Gallery = () => {
@@ -55,47 +54,28 @@ const Gallery = () => {
           </p>
         </motion.div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, delay: 0.2 }}
-          viewport={{ once: true }}
-        >
-          <Carousel
-            opts={{
-              align: "start",
-              loop: true,
-            }}
-            className="w-full max-w-6xl mx-auto"
-          >
-            <CarouselContent className="-ml-2 md:-ml-4">
-              {images.map((image, index) => (
-                <CarouselItem key={index} className="pl-2 md:pl-4 basis-full md:basis-1/2 lg:basis-1/3">
-                  <motion.div
-                    whileHover={{ scale: 1.02 }}
-                    transition={{ duration: 0.2 }}
-                    className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-card shadow-lg"
-                  >
-                    <img
-                      src={image.src}
-                      alt={image.alt}
-                      className="w-full h-full object-cover transition-transform duration-500 hover:scale-110"
-                      loading="lazy"
-                    />
-                    <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300" />
-                  </motion.div>
-                </CarouselItem>
-              ))}
-            </CarouselContent>
-            <CarouselPrevious className="hidden md:flex -left-12 bg-primary/10 border-primary/20 hover:bg-primary/20" />
-            <CarouselNext className="hidden md:flex -right-12 bg-primary/10 border-primary/20 hover:bg-primary/20" />
-          </Carousel>
-        </motion.div>
-
-        {/* Mobile swipe hint */}
-        <p className="text-center text-muted-foreground text-sm mt-6 md:hidden">
-          ← Swipe to explore →
-        </p>
+        {/* 2-row grid layout */}
+        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+          {images.map((image, index) => (
+            <motion.div
+              key={index}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.4, delay: index * 0.05 }}
+              viewport={{ once: true }}
+              whileHover={{ scale: 1.05, zIndex: 10 }}
+              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-card shadow-lg cursor-pointer group"
+            >
+              <img
+                src={image.src}
+                alt={image.alt}
+                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                loading="lazy"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+            </motion.div>
+          ))}
+        </div>
       </div>
     </section>
   );
