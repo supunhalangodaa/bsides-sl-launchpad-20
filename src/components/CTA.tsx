@@ -49,12 +49,16 @@ const CTA = () => {
             transition={{ delay: 0.4 }}
             className="flex flex-wrap items-center justify-center gap-4"
           >
-            <Button variant="hero" size="xl" className="group">
-              Get Your Ticket
-              <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+            <Button variant="hero" size="xl" className="group" asChild>
+              <a href="https://form.jotform.com/260142521593047" target="_blank" rel="noopener noreferrer">
+                Register Your Interest
+                <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              </a>
             </Button>
-            <Button variant="terminal" size="xl">
-              Become a Sponsor
+            <Button variant="terminal" size="xl" asChild>
+              <a href="https://form.jotform.com/260142521593047" target="_blank" rel="noopener noreferrer">
+                Become a Sponsor
+              </a>
             </Button>
           </motion.div>
 
