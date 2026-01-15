@@ -56,8 +56,10 @@ const Navbar = () => {
                 {link.label}
               </a>
             ))}
-            <Button variant="hero" size="sm">
-              Register
+            <Button variant="hero" size="sm" asChild>
+              <a href="https://form.jotform.com/260142521593047" target="_blank" rel="noopener noreferrer">
+                Register
+              </a>
             </Button>
           </div>
 
@@ -90,8 +92,10 @@ const Navbar = () => {
                 </a>
               ))}
               <div className="px-4 pt-2">
-                <Button variant="hero" size="sm" className="w-full">
-                  Register
+                <Button variant="hero" size="sm" className="w-full" asChild>
+                  <a href="https://form.jotform.com/260142521593047" target="_blank" rel="noopener noreferrer">
+                    Register
+                  </a>
                 </Button>
               </div>
             </div>
