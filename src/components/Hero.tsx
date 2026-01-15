@@ -116,8 +116,10 @@ const Hero = () => {
                 Register Now
               </a>
             </Button>
-            <Button variant="terminal" size="xl">
-              Learn More
+            <Button variant="terminal" size="xl" asChild>
+              <a href="#press">
+                Learn More
+              </a>
             </Button>
           </motion.div>
         </motion.div>
