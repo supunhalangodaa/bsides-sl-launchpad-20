@@ -1,5 +1,7 @@
-import { motion } from "framer-motion";
-import { Camera } from "lucide-react";
+import { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { Camera, X } from "lucide-react";
+import { Dialog, DialogContent } from "@/components/ui/dialog";
 
 import event1 from "@/assets/gallery/event-1.jpg";
 import event2 from "@/assets/gallery/event-2.jpg";
@@ -30,6 +32,8 @@ const images = [
 ];
 
 const Gallery = () => {
+  const [selectedImage, setSelectedImage] = useState<{ src: string; alt: string } | null>(null);
+
   return (
     <section id="gallery" className="py-20 bg-background relative overflow-hidden">
       {/* Background accent */}
@@ -54,29 +58,58 @@ const Gallery = () => {
           </p>
         </motion.div>
 
-        {/* 2-row grid layout */}
-        <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3 md:gap-4">
+        {/* Masonry-style grid with natural image sizes */}
+        <div className="columns-2 md:columns-3 lg:columns-4 gap-3 md:gap-4 space-y-3 md:space-y-4">
           {images.map((image, index) => (
             <motion.div
               key={index}
-              initial={{ opacity: 0, scale: 0.9 }}
-              whileInView={{ opacity: 1, scale: 1 }}
+              initial={{ opacity: 0, y: 20 }}
+              whileInView={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.4, delay: index * 0.05 }}
               viewport={{ once: true }}
-              whileHover={{ scale: 1.05, zIndex: 10 }}
-              className="relative aspect-[4/3] overflow-hidden rounded-xl border border-border bg-card shadow-lg cursor-pointer group"
+              whileHover={{ scale: 1.02 }}
+              onClick={() => setSelectedImage(image)}
+              className="break-inside-avoid overflow-hidden rounded-xl border border-border bg-card shadow-lg cursor-pointer group"
             >
               <img
                 src={image.src}
                 alt={image.alt}
-                className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-110"
+                className="w-full h-auto object-contain transition-transform duration-500 group-hover:scale-105"
                 loading="lazy"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-background/80 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </motion.div>
           ))}
         </div>
       </div>
+
+      {/* Lightbox Dialog */}
+      <Dialog open={!!selectedImage} onOpenChange={() => setSelectedImage(null)}>
+        <DialogContent className="max-w-[95vw] max-h-[95vh] p-0 border-none bg-transparent shadow-none">
+          <AnimatePresence>
+            {selectedImage && (
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                exit={{ opacity: 0, scale: 0.9 }}
+                transition={{ duration: 0.2 }}
+                className="relative"
+              >
+                <button
+                  onClick={() => setSelectedImage(null)}
+                  className="absolute -top-12 right-0 p-2 rounded-full bg-background/80 text-foreground hover:bg-background transition-colors z-10"
+                >
+                  <X className="h-6 w-6" />
+                </button>
+                <img
+                  src={selectedImage.src}
+                  alt={selectedImage.alt}
+                  className="max-w-full max-h-[90vh] w-auto h-auto object-contain rounded-lg mx-auto"
+                />
+              </motion.div>
+            )}
+          </AnimatePresence>
+        </DialogContent>
+      </Dialog>
     </section>
   );
 };
