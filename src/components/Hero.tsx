@@ -93,7 +93,7 @@ const Hero = () => {
         }} className="flex flex-wrap items-center justify-center gap-6 mb-10 text-sm font-mono">
             <div className="flex items-center gap-2 text-muted-foreground">
               <Calendar className="w-4 h-4 text-primary" />
-              <span>2027</span>
+              <span>Announcing Soon</span>
             </div>
             <div className="flex items-center gap-2 text-muted-foreground">
               <MapPin className="w-4 h-4 text-primary" />
