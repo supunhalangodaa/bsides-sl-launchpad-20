@@ -5,6 +5,10 @@ import { componentTagger } from "lovable-tagger";
 
 // https://vitejs.dev/config/
 export default defineConfig(({ mode }) => ({
+  // GitHub Pages can be hosted either at a custom domain (base "/")
+  // or under /<repo>/ (base "/<repo>/").
+  // We allow setting this at build time via BASE_PATH.
+  base: process.env.BASE_PATH ?? "/",
   server: {
     host: "::",
     port: 8080,
